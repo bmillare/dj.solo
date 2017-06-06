@@ -131,11 +131,6 @@ wget 'http://repo1.maven.org/maven2/org/clojure/core.specs.alpha/0.1.10/core.spe
 # "install" app to memstick
 cd ../..
 cp -r myapp /path/to/memstick
-
-# OR bundle app (optional)
-cd ../..
-tar -czvf myapp.tar.gz myapp
-cp myapp.tar.gz /path/to/memstick
 ```
 
 ## example dynamic load run usage on Windows
