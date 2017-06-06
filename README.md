@@ -73,8 +73,10 @@ downloaded jars in the local m2 directory
 
 ## example run usage
 
+```clojure
 ;; double click run.bat
 (require 'dj.dependencies2)
 (dj.dependencies2/add-dependencies '[[incanter "1.2.3"]])
 (use '(incanter core stats charts io))
 (view (histogram (sample-normal 1000)))
+```
