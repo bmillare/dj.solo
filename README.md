@@ -31,7 +31,7 @@ The limitations to this approach are:
 
 ## strategy
 
-*Some app components are your responsibility for setting up. Instructions are provided as general guidelines as your particular needs need to be specifically tailored. A reference turn-key scripts is presented at the end.*
+*Some app components are your responsibility for setting up. Instructions are provided as general guidelines as your particular needs need to be specifically tailored. A reference turn-key script is presented at the end.*
 
 ### directory layout
 
@@ -79,7 +79,7 @@ You are free to populate this as you please. `src/dj/dependencies2.clj` includes
 
 ### run script
 
-The main thing is setting the correct paths, classpaths, and then loading clojure.main with any initialization clojure files. Using the following documentation https://clojure.org/reference/repl_and_main I supplied arguments `-i` and `-r`.
+The main requirement is assigning the correct paths (to the app folder) & classpaths (the `jars` folder and the `src` directory), and then loading `clojure.main` with any initialization `clj` files. Using the following documentation https://clojure.org/reference/repl_and_main I supplied arguments `-i` and `-r`.
 
 ## example build instructions for a Windows memstick deployment from Linux
 
