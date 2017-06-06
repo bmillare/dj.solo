@@ -75,7 +75,7 @@ You will also need to include the Clojure jar available https://clojure.org/comm
 
 ### src directory
 
-You are free to populate this as you please. `src/dj/dependencies2.clj` includes code that calls pomegranate to ensure that it stores the downloaded jars in the local `m2` directory. Also, an `src/init.clj` is provided that is run at the start prior to starting a repl.
+You are free to populate this as you please. `src/dj/dependencies2.clj` includes code that calls pomegranate to ensure that it stores the downloaded jars in the local `m2` directory. Also, a sample init script is provided at `src/init.clj`. This script is run at the start prior to starting a repl and just checks if the `m2` directory exists, and creates it otherwise.
 
 ### run script
 
