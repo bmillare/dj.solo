@@ -9,12 +9,12 @@ weird stuff on her computer so she said you are only allowed to run
 everything from a usb stick. To top it off, she doesn't even have
 Java installed.
 
-`dj.solo` solves this problem of "deploying" your app to your friend under her constraints. It does so by creating a standalone clojure
+`dj.solo` solves this problem of "deploying" your app to your friend under her constraints. It does so by creating a standalone Clojure
 app/distribution that bundles everything you need to run the
-application, including the jars, source code, and even the desired
-jvm.
+application, including the dependent jars, app source code, and the desired
+JVM.
 
-Nothing technically novel is presented. Instead a simple approach is presented that is easy to customize to your needs.
+Nothing technically novel is presented. Instead a simple approach is documented that is easy to customize to your needs.
 
 The advantages to this approach are:
 
