@@ -100,6 +100,24 @@ downloaded jars in the local `m2` directory. Also, an `src/init.clj` is provided
 
 The main thing is setting the correct paths, classpaths, and then loading clojure.main with any initialization clojure files. Using the following documentation https://clojure.org/reference/repl_and_main I supplied arguments `-i` and `-r`.
 
+## example build instructions for a windows deployment from linux
+
+```bash
+git clone https://github.com/bmillare/dj.solo.git
+wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jre-8u131-windows-x64.tar.gz
+tar jre*.tar.gz
+mv jre1.8.0_131 dj.solo/jre
+git clone https://github.com/bmillare/dj.project.git
+cd dj.project
+lein uberjar
+mkdir ../dj.solo/jars
+mv target/dj.project-0.3.5-standalone.jar ../dj.solo/jars/
+cd ..
+mv dj.solo myapp
+tar -czvf myapp.tar.gz myapp
+cp myapp.tar.gz /path/to/memstick
+```
+
 ## example dynamic load run usage
 
 ```clojure
