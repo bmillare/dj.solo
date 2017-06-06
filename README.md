@@ -1,21 +1,37 @@
 # dj.solo
-a minimal standalone kit for distributing clojure apps that can grow
+a minimal standalone kit for distributing Clojure apps that can grow
 
 ## motivation
 
-Imagine that you want to show off your new clojure app to your friend
-but it turns out she uses windows and she doesn't like you installing
-weird stuff on her computer. She said you are only allowed to run
-everything from a usb stick, and to top it off, she doesn't even have
+Imagine that you want to show off your new Clojure app to your friend
+but it turns out she uses Windows. She doesn't like you installing
+weird stuff on her computer so she said you are only allowed to run
+everything from a usb stick. To top it off, she doesn't even have
 Java installed.
 
-`dj.solo` solves this problem by creating a standalone clojure
+`dj.solo` solves this problem of "deploying" your app to your friend under her constraints. It does so by creating a standalone clojure
 app/distribution that bundles everything you need to run the
 application, including the jars, source code, and even the desired
 jvm.
 
-Nothing particularly novel is presented, but I believe this is a
-simple approach that is easy to customize to your needs.
+Nothing technically novel is presented. Instead a simple approach is presented that is easy to customize to your needs.
+
+The advantages to this approach are:
+
+- isolated installation
+- barebones, minimal software
+  - you know what's being installed and being depended on
+  - startup to repl is much faster than `leiningen` or `boot`
+    - you can always add them later if you need their functionality
+    
+The limitations to this approach are:
+
+- the OS will not suggest updates to Java
+  - although, theoretically, you could have the app detect a new Java version, download it, and set the correct new paths
+- You might have extra copies of Java, the system installation and the app provided one
+  - potentially, if you put multiple apps, you will have a lot of copies of the JVM
+  - this could be considered a feature if you want to run specific versions
+  - still trivial to manage your self with symlinks
 
 ## strategy
 
@@ -42,14 +58,14 @@ are presented.
 ### copying over a jre
 
 It's up to you to include whichever version of Java you'd like to
-include. For the windows case, install as normal a java version as
-instructions from Oracle. Navigate to the `Program Files->Java`
-directory, and copy over your desired version of to the app
-directory. You can rename it to jre, create a symlink to it called
-jre, or hard code the version info in the run script.
+include. For the Windows case, install a Java version using
+instructions from Oracle. Navigate to the installed `Program Files->Java`
+directory, and copy over your desired JRE version to the app
+directory. You can rename it to `jre`, create a symlink to it called
+`jre`, or hard code the version info in the run script.
 
-(For Jdks installations, note that they include a jre inside, so be
-sure to copy that directory and not the jdk.)
+(For JDK installations, note that they include a JRE inside, so be
+sure to copy that directory and not the JDK's.)
 
 Example Paths:
 - Windows 7 ->  `C:\Program Files\Java\jre1.8.0_60` -> `C:\Foo\myapp\jre`
@@ -57,25 +73,28 @@ Example Paths:
 
 ### base jars
 
-It's recommended that you create a uberjar from a leiningen project
-that uses cemerick.pomegranate and copy that standalone jar into the
-jars folder. A good example project is
+It's recommended that you create a `uberjar` from a `leiningen` project
+that uses `cemerick.pomegranate` and copy that standalone jar into the
+`jars` folder. A good example project is
 https://github.com/bmillare/dj.project
 
 ```bash
-$ cd dj.project; lein uberjar; cp target/*standalone*jar foo-path/jar
+cd dj.project
+lein uberjar
+cp target/*standalone*jar
+foo-path/jar
 ```
 
-You will also need to include the Clojure jar. For alpha 1.9.0 users,
+You will also need to include the Clojure jar available https://clojure.org/community/downloads. For alpha 1.9.0 users,
 you will need to also include the jars from
 https://github.com/clojure/spec.alpha and
 https://github.com/clojure/core.specs.alpha. I found the jars after clicking "Development Snapshot Versions".
 
 ### src directory
 
-You are free to populate this as you please. `dj/dependencies2.clj`
+You are free to populate this as you please. `src/dj/dependencies2.clj`
 includes code that calls pomegranate to ensure that it stores the
-downloaded jars in the local `m2` directory. Also, an `init.clj` is provided that is run at the start prior to starting a repl
+downloaded jars in the local `m2` directory. Also, an `src/init.clj` is provided that is run at the start prior to starting a repl
 
 ### run script
 
