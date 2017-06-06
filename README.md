@@ -70,3 +70,11 @@ https://github.com/clojure/core.specs.alpha
 You are free to populate this as you please. dj/dependencies2.clj
 includes code that calls pomegranate to ensure that it stores the
 downloaded jars in the local m2 directory
+
+## example run usage
+
+;; double click run.bat
+(require 'dj.dependencies2)
+(dj.dependencies2/add-dependencies '[[incanter "1.2.3"]])
+(use '(incanter core stats charts io))
+(view (histogram (sample-normal 1000)))
