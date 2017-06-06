@@ -9,7 +9,7 @@ weird stuff on her computer. She said you are only allowed to run
 everything from a usb stick, and to top it off, she doesn't even have
 Java installed.
 
-dj.solo solves this problem by creating a standalone clojure
+`dj.solo` solves this problem by creating a standalone clojure
 app/distribution that bundles everything you need to run the
 application, including the jars, source code, and even the desired
 jvm.
@@ -43,13 +43,17 @@ are presented.
 
 It's up to you to include whichever version of Java you'd like to
 include. For the windows case, install as normal a java version as
-instructions from Oracle. Navigate to the Program Files->Java
+instructions from Oracle. Navigate to the `Program Files->Java`
 directory, and copy over your desired version of to the app
 directory. You can rename it to jre, create a symlink to it called
 jre, or hard code the version info in the run script.
 
 (For Jdks installations, note that they include a jre inside, so be
 sure to copy that directory and not the jdk.)
+
+Example Paths:
+Windows 7 ->  `C:\Program Files\Java\jre1.8.0_60`
+Arch Linux jre8 -> `/usr/lib/jvm/java-8-openjdk/jre/`
 
 ### base jars
 
@@ -65,24 +69,24 @@ $ cd dj.project; lein uberjar; cp target/*standalone*jar foo-path/jar
 You will also need to include the Clojure jar. For alpha 1.9.0 users,
 you will need to also include the jars from
 https://github.com/clojure/spec.alpha and
-https://github.com/clojure/core.specs.alpha
+https://github.com/clojure/core.specs.alpha. I found the jars after clicking "Development Snapshot Versions".
 
 ### src directory
 
-You are free to populate this as you please. dj/dependencies2.clj
+You are free to populate this as you please. `dj/dependencies2.clj`
 includes code that calls pomegranate to ensure that it stores the
-downloaded jars in the local m2 directory. Also, an init.clj is provided that is run at the start prior to starting a repl
+downloaded jars in the local `m2` directory. Also, an `init.clj` is provided that is run at the start prior to starting a repl
 
 ### run script
 
-The main thing is setting the correct paths, classpaths, and then loading clojure.main with any initialization clojure files.
+The main thing is setting the correct paths, classpaths, and then loading clojure.main with any initialization clojure files. Using the following documentation https://clojure.org/reference/repl_and_main I supplied arguments `-i` and `-r`.
 
 ## example dynamic load run usage
 
 ```clojure
 ;; double click run.bat
 (require 'dj.dependencies2)
-(dj.dependencies2/add-dependencies '[[incanter "1.2.3"]])
+(dj.dependencies2/add-dependencies '[[incanter "1.5.7"]])
 (use '(incanter core stats charts io))
 (view (histogram (sample-normal 1000)))
 ```
