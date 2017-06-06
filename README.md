@@ -58,7 +58,7 @@ that uses cemerick.pomegranate and copy that standalone jar into the
 jars folder. A good example project is
 https://github.com/bmillare/dj.project
 
-$ cd dj.project; lein uberjar; cp target/*standalone*jar foo-path/jar
+$ cd dj.project; lein uberjar; cp target/\*standalone\*jar foo-path/jar
 
 You will also need to include the Clojure jar. For alpha 1.9.0 users,
 you will need to also include the jars from
