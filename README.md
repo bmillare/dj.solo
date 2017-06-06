@@ -52,8 +52,8 @@ jre, or hard code the version info in the run script.
 sure to copy that directory and not the jdk.)
 
 Example Paths:
-Windows 7 ->  `C:\Program Files\Java\jre1.8.0_60`
-Arch Linux jre8 -> `/usr/lib/jvm/java-8-openjdk/jre/`
+- Windows 7 ->  `C:\Program Files\Java\jre1.8.0_60` -> `C:\Foo\myapp\jre`
+- Arch Linux jre8 -> `/usr/lib/jvm/java-8-openjdk/jre/` -> `/home/foo/myapp/jre`
 
 ### base jars
 
