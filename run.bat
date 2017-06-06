@@ -1,0 +1,1 @@
+START %~dp0jre1.8.0_131\bin\java.exe -cp %~dp0\src;%~dp0\jars\* clojure.main
