@@ -36,7 +36,7 @@ Some app components are your responsibility for setting up. Instructions are pro
 ### directory layout
 
 - any directory can be assumed to be the app parent directory
-  - for our purposes, we will assume this git repository will be used as a base
+  - for our purposes, we will assume *this* git repository will be used as a base
 
 + dj.solo
   + jre (a blatant copy of a jre directory)
@@ -59,9 +59,11 @@ Example Paths:
 - Windows 7 ->  `C:\Program Files\Java\jre1.8.0_60` -> `C:\Foo\myapp\jre`
 - Arch Linux jre8 -> `/usr/lib/jvm/java-8-openjdk/jre/` -> `/home/foo/myapp/jre`
 
+Alternatively, you can find the `*.tar.gz` versions of the JRE on Oracle's website http://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html if you don't want to install Java on your system.
+
 ### base jars
 
-It's recommended that you create a `uberjar` from a `leiningen` project that uses `cemerick.pomegranate` and copy that standalone jar into the `jars` folder. A good example project is https://github.com/bmillare/dj.project
+This template uses `cemerick.pomegranate` to dynamically load dependencies. To include it and its dependencies as a jar, you can create an `uberjar` from a `leiningen` project that uses `cemerick.pomegranate` and copy that standalone jar into the `jars` folder. A good example project to use is https://github.com/bmillare/dj.project
 
 ```bash
 cd dj.project
@@ -83,23 +85,20 @@ The main thing is setting the correct paths, classpaths, and then loading clojur
 
 ```bash
 # download template
-git clone https://github.com/bmillare/dj.solo.git
+git clone https://github.com/bmillare/dj.solo.git myapp
 
 # get JRE
 wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jre-8u131-windows-x64.tar.gz
 tar jre*.tar.gz
-mv jre1.8.0_131 dj.solo/jre
+mv jre1.8.0_131 myapp/jre
 
 # build template uberjar
 git clone https://github.com/bmillare/dj.project.git
 cd dj.project
 lein uberjar
-mkdir ../dj.solo/jars
-mv target/dj.project-0.3.5-standalone.jar ../dj.solo/jars/
+mkdir ../myapp/jars
+mv target/dj.project-0.3.5-standalone.jar ../myapp/jars/
 cd ..
-
-# rename app
-mv dj.solo myapp
 
 # download Clojure jars
 cd myapp/jars
