@@ -31,7 +31,7 @@ The limitations to this approach are:
 
 ## strategy
 
-Some app components are your responsibility for setting up. Instructions are provided as general guidelines as your particular needs need to be specifically tailored. A reference turn-key scripts is presented at the end.
+*Some app components are your responsibility for setting up. Instructions are provided as general guidelines as your particular needs need to be specifically tailored. A reference turn-key scripts is presented at the end.*
 
 ### directory layout
 
