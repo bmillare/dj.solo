@@ -81,8 +81,7 @@ https://github.com/bmillare/dj.project
 ```bash
 cd dj.project
 lein uberjar
-cp target/*standalone*jar
-foo-path/jar
+cp target/*standalone*jar foo-path/jar
 ```
 
 You will also need to include the Clojure jar available https://clojure.org/community/downloads. For alpha 1.9.0 users,
@@ -100,7 +99,7 @@ downloaded jars in the local `m2` directory. Also, an `src/init.clj` is provided
 
 The main thing is setting the correct paths, classpaths, and then loading clojure.main with any initialization clojure files. Using the following documentation https://clojure.org/reference/repl_and_main I supplied arguments `-i` and `-r`.
 
-## example build instructions for a windows deployment from linux
+## example build instructions for a Windows memstick deployment from Linux
 
 ```bash
 # download template
