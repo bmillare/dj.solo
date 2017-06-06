@@ -1,3 +1,6 @@
+jre
+jars
+m2
 pom.xml
 pom.xml.asc
 *.jar
