@@ -3,15 +3,11 @@ a minimal standalone kit for distributing Clojure apps that can grow
 
 ## motivation
 
-Imagine that you want to show off your new Clojure app to your friend
-but it turns out she uses Windows. She doesn't like you installing
-weird stuff on her computer so she said you are only allowed to run
-everything from a usb stick. To top it off, she doesn't even have
+Imagine that you want to show off your new Clojure app to your friend but it turns out she uses Windows. She doesn't like you installing weird stuff on her computer so she said you are only allowed to run everything from a usb stick. To top it off, she doesn't even have
 Java installed.
 
 `dj.solo` solves this problem of "deploying" your app to your friend under her constraints. It does so by creating a standalone Clojure
-app/distribution that bundles everything you need to run the
-application, including the dependent jars, app source code, and the desired
+app/distribution that bundles everything you need to run the application, including the dependent jars, app source code, and the desired
 JVM.
 
 Nothing technically novel is presented. Instead a simple approach is documented that is easy to customize to your needs.
@@ -35,15 +31,12 @@ The limitations to this approach are:
 
 ## strategy
 
-Some app components are your responsibility for setting
-up. Instructions and guidelines are provided but no turn-key scripts
-are presented.
+Some app components are your responsibility for setting up. Instructions are provided as general guidelines as your particular needs need to be specifically tailored. A reference turn-key scripts is presented at the end.
 
 ### directory layout
 
 - any directory can be assumed to be the app parent directory
-  - for our purposes, we will assume this git repository will be used
-    as a base
+  - for our purposes, we will assume this git repository will be used as a base
 
 + dj.solo
   + jre (a blatant copy of a jre directory)
@@ -57,15 +50,10 @@ are presented.
 
 ### copying over a jre
 
-It's up to you to include whichever version of Java you'd like to
-include. For the Windows case, install a Java version using
-instructions from Oracle. Navigate to the installed `Program Files->Java`
-directory, and copy over your desired JRE version to the app
-directory. You can rename it to `jre`, create a symlink to it called
-`jre`, or hard code the version info in the run script.
+It's up to you to include whichever version of Java you'd like to include. For the Windows case, install a Java version using instructions from Oracle. Navigate to the installed `Program Files->Java` directory, and copy over your desired JRE version to the app
+directory. You can rename it to `jre`, create a symlink to it called `jre`, or hard code the version info in the run script.
 
-(For JDK installations, note that they include a JRE inside, so be
-sure to copy that directory and not the JDK's.)
+(For JDK installations, note that they include a JRE inside, so be sure to copy that directory and not the JDK's.)
 
 Example Paths:
 - Windows 7 ->  `C:\Program Files\Java\jre1.8.0_60` -> `C:\Foo\myapp\jre`
@@ -73,10 +61,7 @@ Example Paths:
 
 ### base jars
 
-It's recommended that you create a `uberjar` from a `leiningen` project
-that uses `cemerick.pomegranate` and copy that standalone jar into the
-`jars` folder. A good example project is
-https://github.com/bmillare/dj.project
+It's recommended that you create a `uberjar` from a `leiningen` project that uses `cemerick.pomegranate` and copy that standalone jar into the `jars` folder. A good example project is https://github.com/bmillare/dj.project
 
 ```bash
 cd dj.project
@@ -84,16 +69,11 @@ lein uberjar
 cp target/*standalone*jar foo-path/jar
 ```
 
-You will also need to include the Clojure jar available https://clojure.org/community/downloads. For alpha 1.9.0 users,
-you will need to also include the jars from
-https://github.com/clojure/spec.alpha and
-https://github.com/clojure/core.specs.alpha. I found the jars after clicking "Development Snapshot Versions".
+You will also need to include the Clojure jar available https://clojure.org/community/downloads. For alpha 1.9.0 users, you will need to also include the jars from https://github.com/clojure/spec.alpha and https://github.com/clojure/core.specs.alpha. I found the jars after clicking "Development Snapshot Versions".
 
 ### src directory
 
-You are free to populate this as you please. `src/dj/dependencies2.clj`
-includes code that calls pomegranate to ensure that it stores the
-downloaded jars in the local `m2` directory. Also, an `src/init.clj` is provided that is run at the start prior to starting a repl
+You are free to populate this as you please. `src/dj/dependencies2.clj` includes code that calls pomegranate to ensure that it stores the downloaded jars in the local `m2` directory. Also, an `src/init.clj` is provided that is run at the start prior to starting a repl.
 
 ### run script
 
