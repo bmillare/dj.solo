@@ -71,9 +71,13 @@ https://github.com/clojure/core.specs.alpha
 
 You are free to populate this as you please. dj/dependencies2.clj
 includes code that calls pomegranate to ensure that it stores the
-downloaded jars in the local m2 directory
+downloaded jars in the local m2 directory. Also, an init.clj is provided that is run at the start prior to starting a repl
 
-## example run usage
+### run script
+
+The main thing is setting the correct paths, classpaths, and then loading clojure.main with any initialization clojure files.
+
+## example dynamic load run usage
 
 ```clojure
 ;; double click run.bat
