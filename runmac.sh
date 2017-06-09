@@ -1,0 +1,1 @@
+./jre/Contents/Home/bin/java -cp ./src:./jars/* clojure.main -i src/init.clj -r
