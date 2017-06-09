@@ -121,3 +121,29 @@ cp -r myapp /path/to/memstick
 (use '(incanter core stats charts io))
 (view (histogram (sample-normal 1000)))
 ```
+
+## example build instructions for a Mac memstick deployment from a Mac
+```bash
+# download template
+git clone https://github.com/bmillare/dj.solo.git myapp
+
+# get JRE
+curl -L -C - -b "oraclelicense=accept-securebackup-cookie" -O http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jre-8u131-macosx-x64.tar.gz
+tar -xzf jre*.tar.gz
+mv jre*jre myapp/jre
+rm jre*tar.gz
+
+# build template uberjar
+git clone https://github.com/bmillare/dj.project.git
+cd dj.project
+lein uberjar
+mkdir ../myapp/jars
+mv target/dj.project-0.3.5-standalone.jar ../myapp/jars/
+cd ..
+
+# download Clojure jars
+cd myapp/jars
+curl -L -C - -O 'http://repo1.maven.org/maven2/org/clojure/clojure/1.9.0-alpha17/clojure-1.9.0-alpha17.jar'
+curl -L -C - -O 'http://repo1.maven.org/maven2/org/clojure/spec.alpha/0.1.123/spec.alpha-0.1.123.jar'
+curl -L -C - -O 'http://repo1.maven.org/maven2/org/clojure/core.specs.alpha/0.1.10/core.specs.alpha-0.1.10.jar'
+```
